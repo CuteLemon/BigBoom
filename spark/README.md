@@ -21,6 +21,7 @@ Terminal 2
 #模拟实时流数据源
 nc -lk 9999
 ```
+- Windows 需要单独安装nc 工具。下载地址： https://eternallybored.org/misc/netcat/ 解压后加入系统PATH变量即可。
 
 
 Terminal 3
