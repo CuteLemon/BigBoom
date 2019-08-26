@@ -8,4 +8,7 @@ redis = Redis(host="redis")
 @app.route("/")
 def index():
     cnt = redis.incr("cnt")
-    return f"PV is {cnt}"
+    return "PV is %d"%cnt
+
+if __name__=="__main__":
+    app.run(host="0.0.0.0",debug=True)

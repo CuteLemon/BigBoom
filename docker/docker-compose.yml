@@ -1,0 +1,13 @@
+web:
+  build: web/
+  command: python app.py
+  ports:
+   - "80:5000"
+  links:
+   - redis
+
+redis:
+  build: redis/
+  command: redis-server /config/redis.conf
+  volumes:
+   - ./:/data

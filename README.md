@@ -25,7 +25,9 @@ docker-compose up
 
 **常见docker 命令**
 
-- ```docker-compose up```
-按照当前文件夹下的```docker-compose.yml``` 文件启动一个或者多个容器。
+
 - ```docker build -t container_name .```
 按照当前文件夹下的```Dockerfile``` 打包软件。
+
+- ```docker-compose up```
+按照当前文件夹下的```docker-compose.yml``` 文件启动容器集群（多个容器）。
