@@ -1,4 +1,5 @@
 .vscode/*
 ./kafka-docker/*
 ./spark-docker/*
+*.rdb
 
