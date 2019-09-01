@@ -1,0 +1,17 @@
+
+elasticsearch:
+  image: elasticsearch:7.3.1
+  ports:
+   - "9200:9200"
+
+logstash:
+  build: ./logstash/
+  links:
+    - elasticsearch
+
+kibana:
+  image: kibana:7.3.1
+  links:
+    - elasticsearch
+  ports:
+    - "5601:5601"
