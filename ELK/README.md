@@ -11,6 +11,9 @@ ELK Stack 是实时日志处理领域开源界第一选择。
 ```bash
 # 启动一个elasticsearch 容器，默认会映射9200端口
 docker run elasticsearch:5.0
+
+# 7.3.1加强了安全设置，需要改变默认参数才能正常运行
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.3.1
 ```
 
 推荐在Chrome 浏览器中安装插件：ElasticSearch Head. 可以方便的进行交互操作。安装插件后可以自动连接默认配置下的Elastic 服务。
