@@ -57,6 +57,48 @@ Kibana 是一款开源的数据分析和可视化平台。
 docker run kibana
 ```
 
+## ELK 联合应用
+
+将Python脚本产生的logging存入Elastic, 并且通过Kibana 展示。
+
+Python Script logging $\Rightarrow$ Logstash $\Rightarrow$ Elastic  $\Rightarrow$ Kibana
+
+日志生产服务： Python logging 
+日志中转服务： Logstash
+日志存储服务： Elastic
+日志数据分析服务： Kibana
+
+### 日志生产服务
+在该模块中，我们每隔0.5s 即打印一个自增的变量，并将该日志发送到Logstash。
+
+```bash
+# 为防止版本升级带来的代码失效，指定特定版本的包
+pip install python-logstash==0.4.6
+```
+
+```python
+import logging
+import logstash
+import time
+
+host = 'localhost'
+port = '5959'
+
+test_logger = logging.getLogger('python-logstash-logger')
+test_logger.setLevel(logging.INFO)
+#创建一个ogHandler
+test_logger.addHandler(logstash.LogstashHandler(host, 5959))
+
+for x in range(1000):
+    test_logger.info(f'counter is {x} now.')
+    time.sleep(0.5)
+
+```
+
+```config
+
+```
+
 
 
 --- 

@@ -1,6 +1,6 @@
 
 elasticsearch:
-  image: elasticsearch:7.3.1
+  image: elasticsearch:5.0
   ports:
    - "9200:9200"
 
@@ -10,7 +10,7 @@ logstash:
     - elasticsearch
 
 kibana:
-  image: kibana:7.3.1
+  image: kibana:5.0
   links:
     - elasticsearch
   ports:
