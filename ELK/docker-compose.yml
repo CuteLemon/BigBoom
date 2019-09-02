@@ -1,6 +1,8 @@
 
 elasticsearch:
-  image: elasticsearch:5.0
+  image: elasticsearch:7.3.1
+  environment:
+   - discovery.type=single-node
   ports:
    - "9200:9200"
 
@@ -8,9 +10,11 @@ logstash:
   build: ./logstash/
   links:
     - elasticsearch
+  ports:
+    - "5959:5959"
 
 kibana:
-  image: kibana:5.0
+  image: kibana:7.3.1
   links:
     - elasticsearch
   ports:

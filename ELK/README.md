@@ -25,6 +25,7 @@ Logstash 是一个开源日志收集处理框架
 ```bash
 # 启动一个logstash 容器
 docker run logstash
+# logstash:5.0镜像的默认参数会自动退出，因为默认配置没有输入源
 ```
 
 ```bash
@@ -87,7 +88,7 @@ port = '5959'
 test_logger = logging.getLogger('python-logstash-logger')
 test_logger.setLevel(logging.INFO)
 #创建一个ogHandler
-test_logger.addHandler(logstash.LogstashHandler(host, 5959))
+test_logger.addHandler(logstash.LogstashHandler(host, port))
 
 for x in range(1000):
     test_logger.info(f'counter is {x} now.')
