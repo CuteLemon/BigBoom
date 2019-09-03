@@ -79,6 +79,7 @@ pip install python-logstash==0.4.6
 import logging
 import logstash
 import time
+from random import random
 
 host = 'localhost'
 port = '5959'
