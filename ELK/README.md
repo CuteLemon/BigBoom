@@ -58,7 +58,7 @@ docker run kibana
 
 ## ELK 联合应用
 
-将Python脚本产生的logging存入Elastic, 并且通过Kibana 展示。
+将Python脚本产生的logging通过logstash存入Elastic, 并且通过Kibana 展示。
 
 Python Script logging $\Rightarrow$ Logstash $\Rightarrow$ Elastic  $\Rightarrow$ Kibana
 
@@ -68,14 +68,14 @@ Python Script logging $\Rightarrow$ Logstash $\Rightarrow$ Elastic  $\Rightarrow
 日志数据分析服务： Kibana
 
 ### 日志生产服务
-在该模块中，我们每隔0.5s 即打印一个自增的变量，并将该日志发送到Logstash。
+在该模块中，我们每隔随机的时间即打印一个自增的变量，并将该日志发送到Logstash。
 
 ```bash
 # 为防止版本升级带来的代码失效，指定特定版本的包
 pip install python-logstash==0.4.6
 ```
 
-```python
+```python3.6
 import logging
 import logstash
 import time
@@ -89,13 +89,67 @@ test_logger.addHandler(logstash.TCPLogstashHandler(host, port))
 
 for x in range(1000):
     test_logger.info(f'counter is {x} now.')
-    time.sleep(0.5)
+    time.sleep(0.5+5*random())
 
 ```
-
-```config
-
+### Logstash日志中转服务
+Logstash 需要修改默认配置为
+```bash
+input {
+  tcp {
+    port => 5959 #tcp的端口
+    # codec => json#输入的格式为json格式
+  }
+}
+output {
+elasticsearch {
+    hosts => ["elasticsearch:9200"] #es的地址
+    index => "python-message-%{+YYYY.MM.dd}" #存入到es的索引名
+        }
+  stdout {
+    codec => rubydebug
+  }
+}
 ```
+
+使用 ./logstash 文件下的Dockerfile 将新的配置文件拷贝到 容器中
+```dockerfile
+FROM logstash:7.3.1
+
+RUN rm -rf /usr/share/logstash/pipeline/logstash.conf
+ADD ./elk-demo-logstash.conf /usr/share/logstash/pipeline/
+```
+
+### Elastic 日志存储服务
+由于Elastic 启用了安全检查，我们需要修改为单机模式（不修改无法通过初始化检查)。可以通过配置文件实现。
+
+```yml
+...
+elasticsearch:
+  image: elasticsearch:7.3.1
+  environment:
+   - discovery.type=single-node
+  ports:
+   - "9200:9200"
+...
+```
+
+### Kibana 面板数据展示
+1. 浏览器进入交互页面
+http://localhost:5601/app/kibana#/home?_g=() 
+2. 选择绘图的索引数据
+http://localhost:5601/app/kibana#/management/kibana/index_pattern?_g=()
+3. 设定索引
+输入 python-message-  后一路点点点
+4. 设定图表类型与数据源
+http://localhost:5601/app/kibana#/visualize?_g=()
+点击 Create new visualization 按钮, 选择 Line 类型，选择 python-message-* 作为数据源
+5. 设定图表元素
+点击 Buckets 下 的 Add 按钮，添加 X-axis，聚合方式(aggregation)选择 Data Histogram.
+点击Metrics 右上方三角形的 apply change 按钮。
+
+**示例图型**
+![](2019-09-03-16-47-16.png)
 
 
 
