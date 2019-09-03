@@ -135,6 +135,13 @@ elasticsearch:
 ```
 
 ### Kibana 面板数据展示
+
+```bash
+cd ./ELK
+# 启动ELK集群
+docker-compose up
+```
+
 1. 浏览器进入交互页面
 http://localhost:5601/app/kibana#/home?_g=() 
 2. 选择绘图的索引数据
