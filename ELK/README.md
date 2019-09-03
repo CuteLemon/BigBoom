@@ -10,8 +10,6 @@ ELK Stack 是实时日志处理领域开源界第一选择。
 
 ```bash
 # 启动一个elasticsearch 容器，默认会映射9200端口
-docker run elasticsearch:5.0
-
 # 7.3.1加强了安全设置，需要改变默认参数才能正常运行
 docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.3.1
 ```
@@ -24,7 +22,7 @@ docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsear
 Logstash 是一个开源日志收集处理框架
 ```bash
 # 启动一个logstash 容器
-docker run logstash
+docker run logstash:7.3.1
 # logstash:5.0镜像的默认参数会自动退出，因为默认配置没有输入源
 ```
 
@@ -87,8 +85,7 @@ port = '5959'
 
 test_logger = logging.getLogger('python-logstash-logger')
 test_logger.setLevel(logging.INFO)
-#创建一个ogHandler
-test_logger.addHandler(logstash.LogstashHandler(host, port))
+test_logger.addHandler(logstash.TCPLogstashHandler(host, port))
 
 for x in range(1000):
     test_logger.info(f'counter is {x} now.')
@@ -106,3 +103,4 @@ for x in range(1000):
 参考资料
 1. http://docs.flycloud.me/docs/ELKStack/index.html
 2. ELK Stack 权威指南
+3. [python-logstash](https://github.com/vklochan/python-logstash)
