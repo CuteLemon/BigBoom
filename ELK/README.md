@@ -75,7 +75,7 @@ Python Script logging $\Rightarrow$ Logstash $\Rightarrow$ Elastic  $\Rightarrow
 pip install python-logstash==0.4.6
 ```
 
-```python3.6
+```python
 import logging
 import logstash
 import time
