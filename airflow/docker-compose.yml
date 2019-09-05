@@ -1,0 +1,6 @@
+airflow:
+  image: "puckel/docker-airflow:latest"
+  volumes:
+   -  ./dags/:/usr/local/airflow/dags
+  ports:
+   - "8087:8080"
