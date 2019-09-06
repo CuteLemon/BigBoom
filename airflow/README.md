@@ -6,13 +6,13 @@ ETL说人话即做数据的清洗、同步、与转移。
 ```bash
 docker pull puckel/docker-aiflow:1.10.4
 
-docker run -d -p 8080:8080 puckel/docker-airflow webserver
+docker-compose up
 ```
 
 TODO:
 * [x]  airflow container 与host 共享 ./dags/* 下的文件。
 * [x] 一个Python Operator 的example.
-* [ ] 一个postgreSQL Operator 的example.
+* [x] 一个postgreSQL Operator 的example.
 * [ ] 使用插件的🌰
 * [ ] 多个task 的级联example.
 
