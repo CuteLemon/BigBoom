@@ -1,6 +1,13 @@
 airflow:
   image: "puckel/docker-airflow:latest"
+  links:
+    - postgres
   volumes:
    -  ./dags/:/usr/local/airflow/dags
   ports:
    - "8087:8080"
+
+postgres:
+  image: "postgres:10"
+  ports:
+    - "5432:5432"
