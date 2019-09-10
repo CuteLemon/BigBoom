@@ -10,12 +10,14 @@ spark 2.3以后 对 kafka 0.8 已经放弃支持。
 使用spark 2.4.4 作为开发版本。
 ```bash
 # 启动Spark 集群
-spark-docker 的 worker / master 是两个版本？
+cd spark/docker-spark
+docker-compose up
 # 启动kafka 集群
+cd kafka/kafka-docker
+docker-compose -f docker-compose-single-broker.yml up
 ```
 
 ```python
-spark-streaming-kafka-0-10-assembly_2.12-2.4.2.jar
 from pyspark.streaming.kafka import KafkaUtils
 from pyspark.streaming import StreamingContext
 
