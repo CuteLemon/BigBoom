@@ -10,7 +10,7 @@
 kafaka/rabbitmq
 
 数据处理引擎
-spark streaming 
+spark streaming + SparkML
 flink
 python sklearn
 tensorflow
@@ -28,4 +28,22 @@ mongodb
 
 实时监控模块
 ELK 数据看板 - 持仓数据，指令数据，指令结果，价格预测
+
+开发历史
+9.10
+完成spark streaming + kafaka intergration demo v0.01 . 
+
+TODO： 
+使用历史股票数据模拟发送。
+Spark streaming 计算股票价格的5分钟滑动均值作为预测值。
+
+stock_price$\stackrel{Kafka}\Longrightarrow$ store $\stackrel{pythonlog}\Longrightarrow$ ELK
+stock_price$\stackrel{Kafka}\Longrightarrow$ predict $\stackrel{pythonlog}\Longrightarrow$ ELK
+
+数据存储使用Python 脚本, 存储数据的同时logging 将数据发送到 logstash
+数据预测使用pyspark 脚本,计算数据的同时logging 将数据发送到 logstash
+
+数据预测使用 Spark ML
+
+         
 

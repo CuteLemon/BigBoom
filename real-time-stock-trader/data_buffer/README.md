@@ -1,10 +1,8 @@
 ## 数据缓冲
 
-kafka / Rabbitmq
 
+### Kafka + Spark Streaming
 v0.01
-- 使用kafka 作为数据缓冲层
-- kafka + spark-streaming 
 
 spark 2.3以后 对 kafka 0.8 已经放弃支持。
 使用spark 2.4.4 作为开发版本。
@@ -44,8 +42,10 @@ def printOffsetRanges(rdd):
 ```
 在金融支付领域使用 RabbitMQ 居多，而在日志处理、大数据等方面 Kafka 使用居多。
 
+### RabbitMQ
+
 FAQ
-spark 2.4.2版本问题导致无法使用pyspark 调用对应的kafka jar包。(安装相应的包也不行)
+pyspark 2.4.2版本问题导致无法使用pyspark 调用对应的kafka jar包。(安装相应的包也不行)
 使用pyspark 2.4.4并安装相应的jar 包后解决问题。[下载链接](https://search.maven.org/classic/#search%7Cgav%7C1%7Cg%3A%22org.apache.spark%22%20AND%20a%3A%22spark-streaming-kafka-0-8-assembly_2.11%22)
 
 参考资料
