@@ -5,13 +5,13 @@ import pandas as pd
 import numpy as np
 from kafka import KafkaProducer
 import time
+import json
 
-producer = KafkaProducer(bootstrap_servers='localhost:9092',
-                         value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+producer = KafkaProducer(bootstrap_servers='localhost:9092')
 
-data = pd.read_json('test_events.json', lines=True)
+data = pd.read_csv('aapl-trading-hour.csv')
 
 if __name__ == "__main__":
     while True:
-        producer.send('test', data.to_dict())
-        time.sleep(1)
+        for k,v in data.iterrows():
+            producer.send('test',key=k,value=v)
