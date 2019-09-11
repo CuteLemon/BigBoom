@@ -32,3 +32,19 @@ python kafka_consumer.py
 ```
 
 在 Terminal 2 中可以看到producer 产生的各类数据。
+
+## troubleshoot
+
+问题描述
+```docker-compose up``` 
+卡在
+(12/21) Installing containerd (1.2.7-r0) 
+这一步很久没有进度。
+[issue](https://github.com/wurstmeister/kafka-docker/issues/529)
+
+解决方案
+使用wurstmeister/kafka 替代 dockerfile。
+docker-compose.yml LINE 8
+``` build: . ``` 
+修改为
+``` image: wurstmeister/kafka```

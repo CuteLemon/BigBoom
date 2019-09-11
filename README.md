@@ -31,3 +31,8 @@ docker-compose up
 
 - ```docker-compose up```
 按照当前文件夹下的```docker-compose.yml``` 文件启动容器集群（多个容器）。
+
+## python 
+TODO:
+python version
+python package version >> requirements.txt

@@ -50,3 +50,4 @@ pyspark 2.4.2版本问题导致无法使用pyspark 调用对应的kafka jar包�
 
 参考资料
 1. [消息中间件 Kafka 与 RabbitMq 的对比](https://www.infoq.cn/article/kafka-vs-rabbitmq)
+2. [Databricks Data Streaming](https://stanford.edu/~rezab/sparkclass/slides/td_streaming.pdf)
