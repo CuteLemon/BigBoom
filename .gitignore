@@ -3,3 +3,4 @@
 ./spark-docker/*
 *.rdb
 
+.DS_Store
