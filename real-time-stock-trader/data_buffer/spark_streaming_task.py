@@ -20,7 +20,15 @@ def printOffsetRanges(rdd):
         print(o.topic, o.partition, o.fromOffset,o.untilOffset)
         # TODO: 可以修改为更时尚的计数值、均值等数值指标
 
-directKafkaStream.transform(storeOffsetRanges).foreachRDD(printOffsetRanges)
+def storeRdd(rdd):
+    global kafkaData
+    # kafkaData = rdd.KafkaMessageAndMetadata()
+    return rdd
+def printData(rdd):
+    # for d in rdd:
+    print(rdd)
+# directKafkaStream.transform(storeOffsetRanges).foreachRDD(printOffsetRanges)
+directKafkaStream.transform(storeRdd).foreachRDD(printData)
 
 if __name__ == "__main__":
     ssc.start()

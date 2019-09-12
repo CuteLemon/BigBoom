@@ -42,14 +42,21 @@ def printOffsetRanges(rdd):
 ```
 在金融支付领域使用 RabbitMQ 居多，而在日志处理、大数据等方面 Kafka 使用居多。
 
+
 ### RabbitMQ
 
 FAQ
 pyspark 2.4.2版本问题导致无法使用pyspark 调用对应的kafka jar包。(安装相应的包也不行)
 使用pyspark 2.4.4并安装相应的jar 包后解决问题。[下载链接](https://search.maven.org/classic/#search%7Cgav%7C1%7Cg%3A%22org.apache.spark%22%20AND%20a%3A%22spark-streaming-kafka-0-8-assembly_2.11%22)
 
+Structured Streaming 
+[插件下载链接](
+https://search.maven.org/classic/#search%7Cgav%7C1%7Cg%3A%22org.apache.spark%22%20AND%20a%3A%22spark-sql-kafka-0-10_2.11%22)
+
 参考资料
 1. [消息中间件 Kafka 与 RabbitMq 的对比](https://www.infoq.cn/article/kafka-vs-rabbitmq)
 2. [Databricks Data Streaming](https://stanford.edu/~rezab/sparkclass/slides/td_streaming.pdf)
 3. [Spark streaming + pandas to calculate mean](https://matthewrocklin.com/blog/work/2017/10/16/streaming-dataframes-1)
 4. [Spark streaming SQL write to kafka](https://databricks.com/blog/2017/04/26/processing-data-in-apache-kafka-with-structured-streaming-in-apache-spark-2-2.html)
+5. [Spark Structured Streaming Kafka Intergration Guide](http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html)
+6. [是时候放弃 Spark Streaming, 转向 Structured Streaming 了](https://zhuanlan.zhihu.com/p/51883927)

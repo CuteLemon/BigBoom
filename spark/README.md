@@ -56,3 +56,10 @@ ssc.awaitTermination()  # Wait for the computation to terminate
 在Terminal 2 中输入字符并回车, Terminal 3 显示分词统计结果
 
 ![](screen.png)
+
+技术文章
+[Spark Streaming VS Spark Structured Streaming](https://www.qubole.com/blog/dstreams-vs-dataframes-two-flavors-of-spark-streaming/)
+
+Spark Streaming  Spark 0.7.0 +, at-least-once
+Spark Structured Streaming Spark 2.2+, exactly-once
+
