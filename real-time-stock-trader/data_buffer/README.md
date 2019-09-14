@@ -37,11 +37,26 @@ def printOffsetRanges(rdd):
 
  directKafkaStream.transform(storeOffsetRanges).foreachRDD(printOffsetRanges)
 
- ssc.start()
- ssc.awaitTermination()
+ssc.start()
+ssc.awaitTermination()
 ```
 在金融支付领域使用 RabbitMQ 居多，而在日志处理、大数据等方面 Kafka 使用居多。
 
+## Structured Streaming
+
+安装对应的包
+[插件下载链接](
+https://search.maven.org/classic/#search%7Cgav%7C1%7Cg%3A%22org.apache.spark%22%20AND%20a%3A%22spark-sql-kafka-0-10_2.11%22)
+
+Windows10 出现的问题
+```
+ERROR StreamMetadata: Error writing stream metadata StreamMetadata(d2ec25f5-b500-48a4-af02-70b20da2c8dc) to file:/C:/Users/Lemon/Documents/GitHub/BigBoom/kafka/checkpoint/metadata
+java.io.IOException: (null) entry in command string: null chmod 0644 C:\Users\Lemon\Documents\GitHub\BigBoom\kafka\checkpoint\.metadata.0ac501ce-891c-479a-9d8f-724e524e4f2b.tmp
+...
+```
+如何解决
+安装cygwin
+[参考链接](https://stackoverflow.com/questions/45467106/spark-structured-streaming)
 
 ### RabbitMQ
 
@@ -49,9 +64,7 @@ FAQ
 pyspark 2.4.2版本问题导致无法使用pyspark 调用对应的kafka jar包。(安装相应的包也不行)
 使用pyspark 2.4.4并安装相应的jar 包后解决问题。[下载链接](https://search.maven.org/classic/#search%7Cgav%7C1%7Cg%3A%22org.apache.spark%22%20AND%20a%3A%22spark-streaming-kafka-0-8-assembly_2.11%22)
 
-Structured Streaming 
-[插件下载链接](
-https://search.maven.org/classic/#search%7Cgav%7C1%7Cg%3A%22org.apache.spark%22%20AND%20a%3A%22spark-sql-kafka-0-10_2.11%22)
+
 
 参考资料
 1. [消息中间件 Kafka 与 RabbitMq 的对比](https://www.infoq.cn/article/kafka-vs-rabbitmq)
