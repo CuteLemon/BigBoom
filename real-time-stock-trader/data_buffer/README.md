@@ -62,7 +62,7 @@ java.io.IOException: (null) entry in command string: null chmod 0644 C:\Users\Le
 
 FAQ
 pyspark 2.4.2版本问题导致无法使用pyspark 调用对应的kafka jar包。(安装相应的包也不行)
-使用pyspark 2.4.4并安装相应的jar 包后解决问题。[下载链接](https://search.maven.org/classic/#search%7Cgav%7C1%7Cg%3A%22org.apache.spark%22%20AND%20a%3A%22spark-streaming-kafka-0-8-assembly_2.11%22)
+使用pyspark 2.4.4并安装相应的jar 包后解决问题。[下载链接](https://search.maven.org/classic/#search%7Cgav%7C1%7Cg%3A%22org.apache.spark%22%20AND%20a%3A%22spark-streaming-kafka-0-10-assembly_2.11%22)
 
 
 
