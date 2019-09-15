@@ -73,3 +73,4 @@ pyspark 2.4.2版本问题导致无法使用pyspark 调用对应的kafka jar包�
 4. [Spark streaming SQL write to kafka](https://databricks.com/blog/2017/04/26/processing-data-in-apache-kafka-with-structured-streaming-in-apache-spark-2-2.html)
 5. [Spark Structured Streaming Kafka Intergration Guide](http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html)
 6. [是时候放弃 Spark Streaming, 转向 Structured Streaming 了](https://zhuanlan.zhihu.com/p/51883927)
+7. [Spark Structured Streaming Programing Guide](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html)
