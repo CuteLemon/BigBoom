@@ -44,6 +44,11 @@ stock_price$\stackrel{Kafka}\Longrightarrow$ predict $\stackrel{pythonlog}\Longr
 数据预测使用pyspark 脚本,计算数据的同时logging 将数据发送到 logstash
 
 数据预测使用 Spark ML
+9.11
+完成历史股票数据模拟发送。
+
+直接从kafka + Spark Streaming 架构中读取kafaka 的message 没有找到快速验证的方案。
+使用 Spark Structured Streaming(DataFrame) 去替换 Spark Streaming (DStreams)
 
          
 

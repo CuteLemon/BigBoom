@@ -8,8 +8,8 @@ import time
 import json
 
 producer = KafkaProducer(bootstrap_servers='localhost:9092',
-                        key_serializer = lambda v: json.dumps(v).encode('utf-8'), 
-                        value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+                        key_serializer = lambda x: x.encode('utf-8'), 
+                        value_serializer=lambda x: x.encode('utf-8'))
 
 data = pd.read_csv('aapl-trading-hour.csv')
 data.rename(columns={data.columns[0]:'timestamp'},inplace=True)
@@ -19,6 +19,6 @@ if __name__ == "__main__":
     while True:
         i = 0
         for k,v in data.iterrows():
-            producer.send('test',key=i,value=v.to_json())
+            producer.send('test',key=str(i),value=v.to_json())
             i+=1
             time.sleep(3)

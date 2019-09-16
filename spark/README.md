@@ -60,6 +60,6 @@ ssc.awaitTermination()  # Wait for the computation to terminate
 技术文章
 [Spark Streaming VS Spark Structured Streaming](https://www.qubole.com/blog/dstreams-vs-dataframes-two-flavors-of-spark-streaming/)
 
-Spark Streaming  Spark 0.7.0 +, at-least-once
-Spark Structured Streaming Spark 2.2+, exactly-once
+Spark Streaming  Spark 0.7.0 +, at-least-once, 可以开发复杂逻辑
+Spark Structured Streaming Spark 2.2+, exactly-once，基于SQL，功能有限，实现快速。
 
