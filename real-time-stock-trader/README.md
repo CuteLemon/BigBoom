@@ -50,5 +50,6 @@ stock_price$\stackrel{Kafka}\Longrightarrow$ predict $\stackrel{pythonlog}\Longr
 直接从kafka + Spark Streaming 架构中读取kafaka 的message 没有找到快速验证的方案。
 使用 Spark Structured Streaming(DataFrame) 去替换 Spark Streaming (DStreams)
 
-         
+9.16
+使用 Spark Structured Streaming 成功从kafka 中解析DataFrame.         
 

@@ -37,7 +37,7 @@ ds = df\
     .start()
 
 # output to console with json parse
-schema = StructType().add("timestamp", DateType())\
+schema = StructType().add("timestamp", TimestampType())\
   .add("open", IntegerType()) \
   .add("high", IntegerType()) \
   .add("low", IntegerType()) \
