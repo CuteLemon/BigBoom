@@ -12,7 +12,8 @@ default_args = {
 dag = DAG('PostgresExample',
           default_args=default_args,
           description='run sql script with Airflow',
-          schedule_interval=None
+          schedule_interval=None,
+          params={'maintainer_email':['test@test.com']}
         )
 
 run_this = PostgresOperator(

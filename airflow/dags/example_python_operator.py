@@ -11,7 +11,8 @@ default_args = {
 dag = DAG('python_example',
           default_args=default_args,
           description='run python script with Airflow',
-          schedule_interval=None
+          schedule_interval=None,
+          params={'maintainer_email':['test@test.com']}
         )
 
 def print_context(ds, **kwargs):
