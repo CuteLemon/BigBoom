@@ -28,6 +28,7 @@ ds = df \
   .option("checkpointLocation","./checkpoint/") \
   .start()
 
+# output to console with string parse
 ds = df\
     .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)") \
     .writeStream \
@@ -35,6 +36,7 @@ ds = df\
     .format("console").option("checkpointLocation","./checkpoint/") \  
     .start()
 
+# output to console with json parse
 schema = StructType().add("timestamp", DateType())\
   .add("open", IntegerType()) \
   .add("high", IntegerType()) \
@@ -49,25 +51,13 @@ df.select( \
   .outputMode("Append") \
   .format("console").start()
 
+# output to csv
 ds = df\
-  .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)") \
+  .selectExpr(df["key"].cast("string"),
+                from_json(df["value"].cast("string"), schema)) \
   .writeStream \
   .outputMode("Append") \
-  .format("console").start()
-
-ds = df\
-  .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)") \
-  .writeStream \
-  .outputMode("Append") \
-  .format("csv").option("path", "path/to/destination/dir").option("checkpointLocation","./checkpoint/").start()
-
-schema = StructType([StructField("t", BinaryType(), True),  # name， type, nullable
-                      StructField("c2", IntegerType(), True)])
-
-schema = StructType().add('a',StringType()).add('b',IntegerType()) 
-from_json("{'a':'songxx','b':4}",schema)
-
-# 返回空值是因为无法解析
-pyspark.sql.functions.from_json(col, schema, options={})
-Parses a column containing a JSON string into a [[StructType]] with the specified schema.
-  Returns null, in the case of an unparseable string.
+  .format("csv") \
+  .option("path", "./csv_output/") \
+  .option("checkpointLocation","./checkpoint/") \
+  .start()
