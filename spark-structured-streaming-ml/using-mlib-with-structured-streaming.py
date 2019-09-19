@@ -17,20 +17,20 @@ stages += [feature_assembler]
 # label_assembler = VectorAssembler(inputCols=["close"], outputCol="label")
 # stages += [label_assembler]
 
-pipeline = Pipeline(stages = stages)
+pipeline = Pipeline(stages=stages)
 pipelineModel = pipeline.fit(df)
 df = pipelineModel.transform(df)
-selectedCols = ['close', 'features']
+selectedCols = ["close", "features"]
 df = df.select(selectedCols)
 df.printSchema()
 
 # split to train & test
-train, test = df.randomSplit([0.7, 0.3], seed = 2018)
+train, test = df.randomSplit([0.7, 0.3], seed=2018)
 print("Training Dataset Count: " + str(train.count()))
 print("Test Dataset Count: " + str(test.count()))
 
 # fit
-lr = LinearRegression(maxIter=5, regParam=0.0, solver="normal",labelCol='close')
+lr = LinearRegression(maxIter=5, regParam=0.0, solver="normal", labelCol="close")
 lrModel = lr.fit(train)
 
 trainingSummary = lrModel.summary
@@ -41,12 +41,13 @@ train.describe().show()
 
 # get prediction
 lr_predictions = lrModel.transform(test)
-lr_predictions.select("prediction","close","features").show(5)
+lr_predictions.select("prediction", "close", "features").show(5)
 
 
 # R2 on test
-lr_evaluator = RegressionEvaluator(predictionCol="prediction", \
-                 labelCol="close",metricName="r2")
+lr_evaluator = RegressionEvaluator(
+    predictionCol="prediction", labelCol="close", metricName="r2"
+)
 print("R Squared (R2) on test data = %g" % lr_evaluator.evaluate(lr_predictions))
 
 """
