@@ -3,6 +3,10 @@ from pyspark.sql.functions import explode
 from pyspark.sql.functions import split
 from pyspark.sql.functions import from_json
 from pyspark.sql.types import *
+from pyspark.sql.functions import get_json_object
+from pyspark.sql.functions import count
+from pyspark.sql.functions import window
+from pyspark.sql.functions import to_timestamp
 
 spark = SparkSession \
     .builder \
@@ -61,3 +65,12 @@ ds = df\
   .option("path", "./csv_output/") \
   .option("checkpointLocation","./checkpoint/") \
   .start()
+
+ds = df\
+  .select(get_json_object(df.value.cast("string") , '$.timestamp').cast('timestamp').alias("timestamp"),
+        get_json_object(df.value.cast("string") , '$.close').cast('float').alias("close")) \
+  .groupby(window('timestamp','5 second')) \
+  .avg('close') \
+  .writeStream \
+  .outputMode("Update") \
+  .format("console").start()
