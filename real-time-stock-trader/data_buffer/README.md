@@ -58,6 +58,7 @@ java.io.IOException: (null) entry in command string: null chmod 0644 C:\Users\Le
 安装cygwin
 [参考链接](https://stackoverflow.com/questions/45467106/spark-structured-streaming)
 
+spark 的window 是左闭右开区间，即 window[2019-01-01,2019-01-10]是包含2019-01-01的数据，不包含2019-01-10的数据。
 ### RabbitMQ
 
 FAQ

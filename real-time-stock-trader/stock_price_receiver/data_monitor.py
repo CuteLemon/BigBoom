@@ -21,4 +21,4 @@ if __name__ == "__main__":
         for k,v in data.iterrows():
             producer.send('test',key=str(i),value=v.to_json())
             i+=1
-            time.sleep(3)
+            time.sleep(1)
