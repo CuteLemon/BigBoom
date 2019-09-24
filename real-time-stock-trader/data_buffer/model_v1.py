@@ -6,9 +6,10 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import explode
 from pyspark.sql.functions import split
 from pyspark.sql.functions import from_json
-from pyspark.sql.types import *
+import pyspark.sql.types as spark_type
+import pyspark.sql.functions as F
 from pyspark.sql.functions import get_json_object
-from pyspark.sql.functions import window,avg,count,to_timestamp
+from pyspark.sql.functions import window, avg, count, to_timestamp, col
 
 
 spark = SparkSession.builder.appName("StructuredStreaming_Kafka").getOrCreate()
@@ -30,17 +31,22 @@ ds = (
         .alias("timestamp"),
         get_json_object(df.value.cast("string"), "$.close")
         .cast("float")
-        .alias("close")     
+        .alias("close"),
     )
-    .groupby(window("timestamp", "10 seconds","1 second")
-                .start.cast("string").alias("start_time"),
-             window("timestamp", "10 seconds","1 second")
-                .end.cast("string").alias("end_time")
-             )
-    .agg(avg("close"),count("close"))
+    .groupby(
+        window("timestamp", "10 seconds", "1 second")
+        .start.cast("string")
+        .alias("start_time"),
+        window("timestamp", "10 seconds", "1 second")
+        .end.cast("string")
+        .alias("end_time"),
+    )
+    .agg(F.avg("close").alias("avg_close"), F.count("close").alias("cnt_close"))
+    .where(F.col("cnt_close") == 10)
+    .select("start_time", "end_time", "avg_close", "cnt_close")
     .writeStream.outputMode("Update")
     .format("console")
-    .option("truncate",False)
+    .option("truncate", False)
     .start()
 )
 
