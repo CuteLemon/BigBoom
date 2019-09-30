@@ -59,3 +59,16 @@ TODO
 
 ## docker 管理
 清理镜像以及容器内部数据。注意风险。[参考链接](https://note.qidong.name/2017/06/26/docker-clean/)
+
+## Tips
+由于国内网络问题，dockerhub经常无法访问，需要设置镜像地址：
+docker -> Preferences/Setting -> Daemon 
+由Basic 切换为  Advanced 
+增加以下镜像地址：
+```
+ "registry-mirrors": [
+    "https://registry.docker-cn.com",
+    "http://hub-mirror.c.163.com",
+    "https://docker.mirrors.ustc.edu.cn"
+  ]
+```
