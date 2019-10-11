@@ -12,7 +12,7 @@ from pyspark.sql.functions import get_json_object
 from pyspark.sql.functions import window, avg, count, to_timestamp, col
 
 
-spark = SparkSession.builder.appName("StructuredStreaming_Kafka").getOrCreate()
+spark = SparkSession.builder.appName("StructuredStreaming_Kafka").config("spark.sql.shuffle.partitions",2).getOrCreate()
 
 # Subscribe to 1 topic
 df = (
