@@ -1,6 +1,6 @@
 .vscode/*
-./kafka-docker/*
-./spark-docker/*
+./kafka/kafka-docker/*
+./spark/spark-docker/*
 *.rdb
 
 .DS_Store
