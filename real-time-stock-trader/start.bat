@@ -1,9 +1,7 @@
-cd ../kafka/kafka-docker
+cd ../cluster/kafka
 docker-compose -f docker-compose-single-broker.yml up -d
 
-cd ..
-cd ..
-cd ./spark/docker-spark
+cd ../spark
 docker-compose up -d
 
 cd ..
