@@ -60,6 +60,11 @@ TODO
 ## docker 管理
 清理镜像以及容器内部数据。注意风险。[参考链接](https://note.qidong.name/2017/06/26/docker-clean/)
 
+## 挂载数据卷
+在docker的设计中，数据是独立的，可以被一个或者多个容器使用。就如同把一个USB接入到不同的系统中一样。
+
+TODO: 直接挂在云服务器的s3等文件存储服务上？
+
 ## Tips
 由于国内网络问题，dockerhub经常无法访问，需要设置镜像地址：
 docker -> Preferences/Setting -> Daemon 
