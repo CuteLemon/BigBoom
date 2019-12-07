@@ -53,3 +53,7 @@ stock_price$\stackrel{Kafka}\Longrightarrow$ predict $\stackrel{pythonlog}\Longr
 9.16
 使用 Spark Structured Streaming 成功从kafka 中解析DataFrame.         
 
+Spark Streaming Machine Learning
+https://towardsdatascience.com/realtime-prediction-using-spark-structured-streaming-xgboost-and-scala-d4869a9a4c66
+
+12.5 TODO: 将计算值output 放入Kafka 队列。
