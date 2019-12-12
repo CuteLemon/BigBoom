@@ -1,3 +1,14 @@
+## 基础概念
+Kafka 是一个分布式的流平台。
+
+topic and logs
+
+partition
+
+producer
+
+consumer
+
 ## 准备
 
 ```bash
@@ -48,3 +59,6 @@ docker-compose.yml LINE 8
 ``` build: . ``` 
 修改为
 ``` image: wurstmeister/kafka```
+
+## Reference
+- [Apache Kafka 官方文档](https://kafka.apache.org/intro)
