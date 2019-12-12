@@ -11,6 +11,8 @@ cd ..
 cd ..
 cd ./real-time-stock-trader
 cd ./stock_price_receiver/
+SLEEP 10
+ECHO sleep 10s to wait kafka cluster
 python data_monitor.py &
 
 # spark 处理程序
